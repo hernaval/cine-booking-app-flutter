@@ -5,6 +5,9 @@ import 'package:i_cine_app/widgets/actions/w_button.dart';
 import 'package:i_cine_app/widgets/heading/w_text.dart';
 import 'package:i_cine_app/widgets/heading/w_text_large.dart';
 
+import '../../constants/routes.dart';
+import '../../helpers/screen_args.dart';
+
 class MovieDetail extends StatelessWidget {
   const MovieDetail({Key? key}) : super(key: key);
 
@@ -41,7 +44,12 @@ class MovieDetail extends StatelessWidget {
                                 color: AppColors.mainTextColor
                             )
                         ),
-                        child: Icon(Icons.close_rounded, size: 16,)
+                        child: GestureDetector(
+                          onTap: () => {
+                            Navigator.pop(context)
+                          },
+                            child: Icon(Icons.close_rounded, size: 16,)
+                        )
                     )
                   ],
                 ),
@@ -102,6 +110,11 @@ class MovieDetail extends StatelessWidget {
             child: WButton(
               text: "Reservez maintenant",
               color: AppColors.accentColor,
+              onPressedHandler: () {
+                print("dd");
+                goTo(context, BookingRoute.booking_time, ScreenArgs<String>("bb")
+                );
+              },
             ),
           )
         ],

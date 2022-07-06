@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:i_cine_app/constants/colors.dart';
 import 'package:i_cine_app/screens/movies/widgets/movie_header.dart';
 import 'package:i_cine_app/widgets/heading/w_text.dart';
+import 'package:i_cine_app/widgets/navigation/custom_app_bar.dart';
 
+import '../../constants/routes.dart';
+import '../../helpers/screen_args.dart';
 import '../../widgets/actions/w_button.dart';
 
 class BookingSeatScreen extends StatelessWidget {
@@ -10,49 +13,58 @@ class BookingSeatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          MovieHeader(),
-          SizedBox(height: 40,),
-
-          // screen
-          Container(
-            width: double.maxFinite,
-            height: 10,
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-          ),
-          SizedBox(height: 50,),
-
-          // seat
-          Wrap(
-            children: List.generate(50, (index) {
-              return Seat();
-            })
-            ,
-          ),
-
-          SizedBox(height: 30,),
-          // seat legend
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Scaffold(
+      appBar: CustomAppBar(),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
             children: [
-              SeatLegend("Vos choix", AppColors.accentColor),
-              SeatLegend("Reserve", Colors.grey),
-              SeatLegend("Libre", Colors.transparent)
+              MovieHeader(),
+              SizedBox(height: 40,),
+
+              // screen
+              Container(
+                width: double.maxFinite,
+                height: 10,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 50,),
+
+              // seat
+              Wrap(
+                children: List.generate(50, (index) {
+                  return Seat();
+                })
+                ,
+              ),
+
+              SizedBox(height: 30,),
+              // seat legend
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SeatLegend("Vos choix", AppColors.accentColor),
+                  SeatLegend("Reserve", Colors.grey),
+                  SeatLegend("Libre", Colors.transparent)
+                ],
+              ),
+              SizedBox(height: 40,),
+              Container(
+                child: WButton(
+                  text: "Confirmer",
+                  color: AppColors.accentColor,
+                  onPressedHandler: () {
+                    goTo(context, BookingRoute.booking_payment, ScreenArgs<String>("bb")
+                    );
+                  },
+                ),
+              )
             ],
           ),
-          SizedBox(height: 40,),
-          Container(
-            child: WButton(
-              text: "Confirmer",
-              color: AppColors.accentColor,
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

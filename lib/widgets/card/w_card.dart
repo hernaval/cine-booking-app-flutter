@@ -22,7 +22,7 @@ class WCard extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: AppColors.highPrimaryAccenColor
+        color: AppColors.primaryColor
       ),
       child: wCardType == WCardType.multiline
           ?
