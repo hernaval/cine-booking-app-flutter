@@ -11,8 +11,8 @@ class AppColors{
   // static final Color mainTextColor = Color(0xFFababad);
   static final Color buttonBackground = Color(0xFFf1f1f9);
 
-  static final Color primaryColor = Color(0x292929);
-  static final Color highPrimaryAccenColor = Colors.black45.withOpacity(0.3);
+  static final Color primaryColor = Color(0xff292929);
+  static final Color highPrimaryAccenColor = Color(0xff303030);
   static final Color accentColor = Color(0xFFe7bb4e);
   static final Color mainTextColor = Color(0xFFf1f1f9);
 }

@@ -27,59 +27,65 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-         WTextLarge(text: "En vogue"),
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+           WTextLarge(text: "En vogue"),
 
-        // Trending movies with slider horizontal
-        ListViewContainer(
-          height: 300,
-          listView: ListView.builder(
-            itemCount: 3,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return MovieCard(
-                  mode: CardTypeMode.landscape,
-                  onTapHandler: showMovieDetail,
-              );
-            },
-          ),
-        ),
-
-        WTextLarge(text: "Categories"),
-        // Categories list with slider horizontal
-        ListViewContainer(
-            height: 50,
+          // Trending movies with slider horizontal
+          ListViewContainer(
+            height: 300,
             listView: ListView.builder(
-              itemCount: 5,
+              itemCount: 3,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  padding: EdgeInsets.only(right: 20),
-                    child: WCard()
+                return MovieCard(
+                    mode: CardTypeMode.landscape,
+                    onTapHandler: showMovieDetail,
                 );
               },
-            )
-        ),
-        WTextLarge(text: "Recommende pour vous"),
-        // slider horizontal
-
-        // Trending movies with slider horizontal
-        ListViewContainer(
-          height: 300,
-          listView: ListView.builder(
-            itemCount: 3,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return MovieCard(
-                  mode: CardTypeMode.portrait,
-                  onTapHandler: showMovieDetail
-              );
-            },
+            ),
           ),
-        ),
-      ],
+
+          WTextLarge(text: "Categories"),
+          // Categories list with slider horizontal
+          ListViewContainer(
+              height: 50,
+              listView: ListView.builder(
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    padding: EdgeInsets.only(right: 20),
+                      child: WCard(
+                        texts: ["0", "Horror"],
+                      )
+                  );
+                },
+              )
+          ),
+          SizedBox(height: 30,),
+          WTextLarge(text: "Recommende pour vous"),
+          // slider horizontal
+
+          // Trending movies with slider horizontal
+          ListViewContainer(
+            height: 300,
+            listView: ListView.builder(
+              itemCount: 3,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return MovieCard(
+                    mode: CardTypeMode.portrait,
+                    onTapHandler: showMovieDetail
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,24 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:i_cine_app/constants/colors.dart';
 
+enum WCardType {
+  inline,
+  multiline,
+}
+
 class WCard extends StatelessWidget {
-  const WCard({Key? key}) : super(key: key);
+  final double width;
+  final double height;
+  final List<String> texts;
+  final WCardType wCardType;
+
+
+  WCard({this.width = 70, this.height = 60, required this.texts, this.wCardType = WCardType.multiline });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: AppColors.highPrimaryAccenColor
       ),
-      child: Column(
+      child: wCardType == WCardType.multiline
+          ?
+      Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("ð"),
-          Text("Horror", style: TextStyle(
-            fontSize: 12
+          for(String t in texts) Text(t, style: TextStyle(
+            fontSize: 10
+          ),)
+        ],
+      )
+          :
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          for(String t in texts) Text(t, style: TextStyle(
+              fontWeight: FontWeight.bold
           ),)
         ],
       ),

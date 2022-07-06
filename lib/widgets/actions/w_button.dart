@@ -20,7 +20,7 @@ class WButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(color)
         ),
         child: WText(
-          text: "Reservez maintenant",
+          text: text,
           size: 16,
           color: Colors.white,
         )

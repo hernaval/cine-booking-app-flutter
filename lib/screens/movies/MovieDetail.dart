@@ -14,7 +14,7 @@ class MovieDetail extends StatelessWidget {
       padding: EdgeInsets.all(25),
       height: 650,
       decoration: BoxDecoration(
-          color: Colors.black45.withOpacity(0.6),
+          color: Colors.black45.withOpacity(0.40),
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30)
