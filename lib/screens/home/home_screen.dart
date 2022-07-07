@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:i_cine_app/data/repositories/movie_repository.dart';
+import 'package:i_cine_app/data/services/impl/movie_repository_impl.dart';
+import 'package:i_cine_app/data/services/local_service.dart';
 import 'package:i_cine_app/screens/movies/MovieDetail.dart';
 import 'package:i_cine_app/widgets/card/movie_card.dart';
 import 'package:i_cine_app/widgets/card/w_card.dart';
@@ -15,13 +18,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late List<Movie> trendMovies = [];
+  final IMovieRepository movieRepository = MovieRepositoryImpl(LocalService());
 
-  showMovieDetail(Movie? movie) {
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  void _loadData() async {
+      trendMovies = await movieRepository.getTrends();
+      print(trendMovies);
+  }
+  showMovieDetail(Movie movie) {
     showModalBottomSheet(
         // backgroundColor: Colors.transparent,
         isScrollControlled: true,
         context: context,
-        builder: (context) => MovieDetail()
+        builder: (context) => MovieDetail(movie)
     );
   }
 
@@ -38,12 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ListViewContainer(
             height: 300,
             listView: ListView.builder(
-              itemCount: 3,
+              itemCount: trendMovies.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 return MovieCard(
                     mode: CardTypeMode.landscape,
                     onTapHandler: showMovieDetail,
+                  movie: trendMovies[index],
                 );
               },
             ),
@@ -74,12 +90,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ListViewContainer(
             height: 300,
             listView: ListView.builder(
-              itemCount: 3,
+              itemCount: trendMovies.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 return MovieCard(
                     mode: CardTypeMode.portrait,
-                    onTapHandler: showMovieDetail
+                    onTapHandler: showMovieDetail,
+                  movie: trendMovies[index],
                 );
               },
             ),

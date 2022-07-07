@@ -5,8 +5,11 @@ import 'package:i_cine_app/widgets/card/movie_card.dart';
 import 'package:i_cine_app/widgets/heading/w_text.dart';
 import 'package:i_cine_app/widgets/heading/w_text_large.dart';
 
+import '../../../models/movie.dart';
+
 class MovieHeader extends StatelessWidget {
-  const MovieHeader({Key? key}) : super(key: key);
+  final Movie? movie;
+  const MovieHeader({this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class MovieHeader extends StatelessWidget {
                 ),
               ]
             ),
-            child: Image.asset("assets/images/avengers.jpg",
+            child: Image.network(movie!.posterUrl,
               width: 140,
               fit: BoxFit.cover,
             ),
@@ -42,16 +45,15 @@ class MovieHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // title
-                WTextLarge(text: "Avengers", size: 22),
+                WTextLarge(text: movie!.title, size: 22),
 
                 // version
-                WText(text: "USA, NYC", size:  12,),
+                WText(text: movie!.category, size:  12,),
 
                 // salle
                 WText(text: "3D, 3D MAX", size:  12,),
 
                 // trailer button
-
                 Row(
                     children: [
                       Icon(Icons.play_circle_outline_sharp ),

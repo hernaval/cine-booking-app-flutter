@@ -9,10 +9,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 0,
       backgroundColor: AppColors.highPrimaryAccenColor,
-      leading: Icon(Icons.apps),
-      actions: [
-        Icon(Icons.search, size: 30,)
-      ],
+      // leading: Icon(Icons.apps),
+      // actions: [
+      //   Icon(Icons.search, size: 30,)
+      // ],
     );
   }
 

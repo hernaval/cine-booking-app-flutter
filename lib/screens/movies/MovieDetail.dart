@@ -7,9 +7,13 @@ import 'package:i_cine_app/widgets/heading/w_text_large.dart';
 
 import '../../constants/routes.dart';
 import '../../helpers/screen_args.dart';
+import '../../models/movie.dart';
 
 class MovieDetail extends StatelessWidget {
-  const MovieDetail({Key? key}) : super(key: key);
+  final Movie movie;
+
+
+  MovieDetail(this.movie);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +59,7 @@ class MovieDetail extends StatelessWidget {
                 ),
                 SizedBox(height: 20,),
                 // info
-                MovieHeader(),
+                MovieHeader(movie: movie),
 
                 SizedBox(height: 40,),
 
@@ -111,8 +115,7 @@ class MovieDetail extends StatelessWidget {
               text: "Reservez maintenant",
               color: AppColors.accentColor,
               onPressedHandler: () {
-                print("dd");
-                goTo(context, BookingRoute.booking_time, ScreenArgs<String>("bb")
+                goTo(context, BookingRoute.booking_time, MovieScreenArgs(movie)
                 );
               },
             ),
