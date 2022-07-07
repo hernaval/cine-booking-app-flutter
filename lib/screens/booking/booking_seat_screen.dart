@@ -61,7 +61,7 @@ class _BookingSeatScreenState extends State<BookingSeatScreen> {
 
               // seat
               FutureBuilder(
-                future: boookingRepository.getBookingByDiffusion(Diffusion(selectedDiffusionId, "date", "quality", 0)), //this is not a good practice but time save for now ,
+                future: boookingRepository.getBookingByDiffusion(Diffusion(selectedDiffusionId, "date", "quality", 0, "123")), //this is not a good practice but time save for now ,
                 builder: (context, AsyncSnapshot<List<Booking>>snapshot) {
                   if(snapshot.hasData) {
                     return Wrap(

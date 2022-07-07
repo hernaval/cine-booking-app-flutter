@@ -34,7 +34,11 @@ class LocalService {
     return _localService;
   }
 
+  Future<Map<String, dynamic>> single(String id) async {
+    await Future.delayed(Duration(milliseconds: 200));
 
+    return _data[0];
+  }
 
   Future<List<Map<String, dynamic>>> list() async {
     await Future.delayed(Duration(milliseconds: 800));
@@ -48,25 +52,25 @@ class LocalService {
     return [
       // diffusion data
       {
-        'id': '1234', 'date': '12-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
+        'id': '1234', 'date': '12-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD', 'movieId': '123'
       },
       {
-        'id': 'asdfadf', 'date': '13-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
+        'id': 'asdfadf', 'date': '13-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD', 'movieId': '123'
       },
       {
-        'id': 'asdfadsf', 'date': '15-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
+        'id': 'asdfadsf', 'date': '15-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD', 'movieId': '123'
       },
       {
-        'id': 'edgfsdf', 'date': '21-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
+        'id': 'edgfsdf', 'date': '21-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD', 'movieId': '123'
       },
       {
-        'id': 'ddergf', 'date': '01-08-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
+        'id': 'ddergf', 'date': '01-08-2022','price': 10000, 'quality': '3DS 3DS MAX UHD', 'movieId': '123'
       },
       {
-        'id': 'ddftrefdf', 'date': '03-08-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
+        'id': 'ddftrefdf', 'date': '03-08-2022','price': 10000, 'quality': '3DS 3DS MAX UHD', 'movieId': '123'
       },
       {
-        'id': 'eeefhrtdd', 'date': '04-08-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
+        'id': 'eeefhrtdd', 'date': '04-08-2022','price': 10000, 'quality': '3DS 3DS MAX UHD', 'movieId': '123'
       },
 
 

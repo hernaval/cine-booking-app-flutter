@@ -1,5 +1,6 @@
 import 'package:i_cine_app/data/repositories/movie_repository.dart';
 import 'package:i_cine_app/data/services/local_service.dart';
+import 'package:i_cine_app/models/diffusion.dart';
 import 'package:i_cine_app/models/movie.dart';
 
 class MovieRepositoryImpl implements IMovieRepository {
@@ -23,6 +24,12 @@ class MovieRepositoryImpl implements IMovieRepository {
   Future<List<Movie>> getTrends() async {
     var items = await _localService.list();
     return items.map((e) => Movie.fromMap(e)).toList();
+  }
+
+  @override
+  Future<Movie> getMovieByDiffusion(Diffusion diffusion) async {
+    var item = await _localService.single(diffusion.id);
+    return  Movie.fromMap(item);
   }
 
 }

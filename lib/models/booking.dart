@@ -1,5 +1,4 @@
 import 'package:i_cine_app/models/diffusion.dart';
-import 'package:i_cine_app/models/user.dart';
 
 class Booking {
   final String id;
@@ -24,7 +23,7 @@ class Booking {
       'time': time,
       'diffusionId': diffusionId,
       'userId': userId,
-      'reservedSeats': reservedSeats
+      'reservedSeats': reservedSeats,
     };
   }
 
