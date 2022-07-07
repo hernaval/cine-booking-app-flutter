@@ -1,3 +1,4 @@
+import 'package:i_cine_app/models/diffusion.dart';
 import 'package:i_cine_app/models/movie.dart';
 
 mixin ToAlias{}
@@ -8,3 +9,4 @@ class ScreenArgs<T> {
 }
 
 class MovieScreenArgs = ScreenArgs<Movie> with ToAlias;
+class BookingArgs = ScreenArgs<Map<String, dynamic>> with ToAlias;

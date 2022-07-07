@@ -46,6 +46,7 @@ class LocalService {
     await Future.delayed(Duration(milliseconds: 800));
 
     return [
+      // diffusion data
       {
         'id': '1234', 'date': '12-07-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
       },
@@ -66,9 +67,48 @@ class LocalService {
       },
       {
         'id': 'eeefhrtdd', 'date': '04-08-2022','price': 10000, 'quality': '3DS 3DS MAX UHD',
-      }
+      },
+
+
     ];
   }
+
+  Future<List<Map<String, dynamic>>> listNestedById(String id) async {
+    await Future.delayed(Duration(milliseconds: 800));
+
+    return [
+      // booking data
+      {
+        'id': "1234", 'time': "time",'diffusionId': "diffusionId",'userId': null,  'reservedSeats': 7
+      },
+      {
+        'id': "12345", 'time': "time",'diffusionId': "diffusionId",'userId': null,  'reservedSeats': 13
+      },
+      {
+        'id': "12345", 'time': "time",'diffusionId': "diffusionId",'userId': null,  'reservedSeats': 20
+      },
+    ];
+  }
+
+  Future<List<Map<String, dynamic>>> insertMany(dynamic data) async {
+    await Future.delayed(Duration(milliseconds: 800));
+
+    return [
+      // booking data
+      {
+        'id': "1234", 'time': "time",'diffusionId': "diffusionId",'userId': null,  'reservedSeats': 7
+      },
+      {
+        'id': "12345", 'time': "time",'diffusionId': "diffusionId",'userId': null,  'reservedSeats': 13
+      },
+      {
+        'id': "12345", 'time': "time",'diffusionId': "diffusionId",'userId': null,  'reservedSeats': 20
+      },
+    ];
+  }
+
+
+
 
 
 }

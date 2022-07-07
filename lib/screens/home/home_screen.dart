@@ -29,7 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _loadData() async {
       trendMovies = await movieRepository.getTrends();
-      print(trendMovies);
+      setState(() {
+
+      });
   }
   showMovieDetail(Movie movie) {
     showModalBottomSheet(
@@ -51,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // Trending movies with slider horizontal
           ListViewContainer(
+            hasData: trendMovies.isNotEmpty,
             height: 300,
             listView: ListView.builder(
               itemCount: trendMovies.length,
@@ -68,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
           WTextLarge(text: "Categories"),
           // Categories list with slider horizontal
           ListViewContainer(
+              hasData: true,
               height: 50,
               listView: ListView.builder(
                 itemCount: 5,
@@ -76,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Container(
                     padding: EdgeInsets.only(right: 20),
                       child: WCard(
-                        texts: ["0", "Horror"],
+                        texts: ["😉", "Horror"],
                       )
                   );
                 },
@@ -88,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // Trending movies with slider horizontal
           ListViewContainer(
+            hasData: trendMovies.isNotEmpty,
             height: 300,
             listView: ListView.builder(
               itemCount: trendMovies.length,

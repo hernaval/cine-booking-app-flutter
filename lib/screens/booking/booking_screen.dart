@@ -23,9 +23,16 @@ class BookingScreen extends StatefulWidget {
 
 class _BookingScreenState extends State<BookingScreen> {
   final IDiffusionRepository diffusionRepository = DiffusionRepositoryImpl(LocalService());
+  final List<Map<int, String>> diffusionTime = [
+    {1: "10:00"},
+    {2: "12:00"},
+    {3: "14:00"},
+    {4: "16:00"},
+    {5: "18:00"},
+  ];
   late List<Diffusion> diffusions;
-  List<int>selectedTime = [];
-  List<String> selectedDiffusionId = [];
+  List<int>selectedTimeKeys = [];
+  List<String> selectedDiffusionIds = [];
 
 
   @override
@@ -47,27 +54,11 @@ class _BookingScreenState extends State<BookingScreen> {
                   // available date selector
                   WTextLarge(text: "Choisissez une date", size: 20, color: AppColors.mainTextColor,),
 
-                  // FutureBuilder<List<Diffusion>>(
-                  //   future: diffusionRepository.getDiffusionsByMovie(movie.args),
-                  //     builder: (context, AsyncSnapshot<List<Diffusion>> snapshot ) {
-                  //
-                  //       if(snapshot.hasData) {
-                  //         return
-                  //             Column(
-                  //               children: snapshot.data!.map((e) {
-                  //                 return
-                  //               }).toList(),
-                  //             );
-                  //
-                  //       }
-                  //       return CircularProgressIndicator();
-                  //     }
-                  // ),
-
                   FutureBuilder(
                       future: diffusionRepository.getDiffusionsByMovie(movie.args),
                     builder: (context, AsyncSnapshot<List<Diffusion>> snapshot ) {
                         if(snapshot.hasData) {
+
                           return Wrap(
                             children: snapshot.data!.map((diffusion) {
                               List<String> dateText = diffusion.date.split("-");
@@ -75,22 +66,16 @@ class _BookingScreenState extends State<BookingScreen> {
                                 margin: EdgeInsets.only(right: 20, bottom: 10),
                                 child: InkWell(
                                   onTap: () {
-                                    selectedDiffusionId.add(diffusion.id);
+                                    selectedDiffusionIds.add(diffusion.id);
                                     setState(() {
-                                      // if(selectedDiffusionId.where((element) => element == diffusion.id).isNotEmpty) {
-                                      //   print("ato");
-                                      //   selectedDiffusionId.remove(diffusion.id);
-                                      // } else {
-                                      //   print("eho tsy misy");
-                                      //   selectedDiffusionId.add(diffusion.id);
-                                      // }
-                                      selectedDiffusionId.add(diffusion.id);
+                                      selectedDiffusionIds.clear();
+                                      selectedDiffusionIds.add(diffusion.id);
                                     } );
                                   },
                                   child: WCard(
                                     height:  70,
                                     texts: [dateText[0], dateText[1], dateText[2]],
-                                    selected: selectedDiffusionId.where((element) => element == diffusion.id).isNotEmpty
+                                    selected: selectedDiffusionIds.where((element) => element == diffusion.id).isNotEmpty
                                   ),
                                 ),
                               );
@@ -108,21 +93,26 @@ class _BookingScreenState extends State<BookingScreen> {
                   // available time selector
                   WTextLarge(text: "Choisissez une heure", size: 20, color: AppColors.mainTextColor,),
                   Wrap(
-                    children: List.generate(9, (index) {
+                    children: diffusionTime.map((time) {
                       return Container(
                         margin: EdgeInsets.only(right: 20, bottom: 10),
                         child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedTimeKeys.clear();
+                              selectedTimeKeys.add(time.keys.first);
+                            });
+                          },
                           child: WCard(
                             height:  50,
                             width: 90,
                             wCardType: WCardType.inline,
-                            texts: ["12:00", "AM"],
-                            selected: index == 2,
+                            texts: [time.values.first,  "AM"],
+                            selected: selectedTimeKeys.where((element) => element == time.keys.first).isNotEmpty,
                           ),
                         ),
                       );
-                    })
-                    ,
+                    }).toList()
                   ),
 
                   SizedBox(height: 30,),
@@ -136,7 +126,14 @@ class _BookingScreenState extends State<BookingScreen> {
                           text: "Suivant",
                           color: AppColors.accentColor,
                           onPressedHandler: () {
-                            goTo(context, BookingRoute.booking_seat, ScreenArgs<String>("bb")
+                            Map<String, dynamic> bookingArg =
+                              {
+                                'selectedTimeKey': selectedTimeKeys.first,
+                                'selectedDiffusionId': selectedDiffusionIds.first,
+                                'movie': movie.args,
+                              }
+                            ;
+                            goTo(context, BookingRoute.booking_seat, BookingArgs(bookingArg)
                             );
                           },
                         ),

@@ -6,12 +6,23 @@ import 'package:i_cine_app/widgets/heading/w_text_large.dart';
 import 'package:i_cine_app/widgets/navigation/custom_app_bar.dart';
 
 import '../../constants/colors.dart';
+import '../../helpers/screen_args.dart';
 import '../../widgets/actions/w_button.dart';
 class BookingTicketScreen extends StatelessWidget {
   const BookingTicketScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as BookingArgs;
+    final movie = args.args['movie'];
+    final seats = args.args['selectedSeatIds'] as List<int>;
+    final seatCounts = seats.length;
+    final price = 10000;
+
+    String calcPriceStr(int prince, int seatCounts) {
+      return (prince*seatCounts).toString()+ "MGA";
+    }
+
     return Scaffold(
       appBar: CustomAppBar(),
       body: Container(
@@ -30,15 +41,15 @@ class BookingTicketScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       // movie header
-                      MovieHeader(),
+                      MovieHeader(movie: movie,),
 
                       // princing information
                       SizedBox(height: 60,),
 
                       Column(
                         children: [
-                          PriceInfo("Total", "20.000 MGA", isTitle: true),
-                          PriceInfo("Tickets (2)", "20.000 MGA"),
+                          PriceInfo("Total", calcPriceStr(price, seatCounts), isTitle: true),
+                          PriceInfo("Tickets (2)", calcPriceStr(price, seatCounts)),
                           PriceInfo("Reservation", "12-07-2022, 10:00"),
                           PriceInfo("Coupon", ">", isTitle: true),
                         ],
