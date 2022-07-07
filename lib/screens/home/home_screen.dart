@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           WTextLarge(text: "En vogue"),
+           WTextLarge(text: "En vogue", size: 26,),
 
           // Trending movies with slider horizontal
           ListViewContainer(
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          WTextLarge(text: "Categories"),
+          WTextLarge(text: "Categories", size: 26,),
           // Categories list with slider horizontal
           ListViewContainer(
               hasData: true,
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
               )
           ),
           SizedBox(height: 30,),
-          WTextLarge(text: "Recommende pour vous"),
+          WTextLarge(text: "Recommende pour vous", size: 26,),
           // slider horizontal
 
           // Trending movies with slider horizontal

@@ -38,31 +38,33 @@ class MovieHeader extends StatelessWidget {
           ),
 
           //info
-          Container(
-            padding: EdgeInsets.only(top: 5, bottom: 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // title
-                WTextLarge(text: movie!.title, size: 22),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.only(top: 5, bottom: 5, left: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // title
+                  WTextLarge(text: movie!.title, size: 22),
 
-                // version
-                WText(text: movie!.category, size:  12,),
+                  // version
+                  WText(text: movie!.category, size:  12,),
 
-                // salle
-                WText(text: "3D, 3D MAX", size:  12,),
+                  // salle
+                  WText(text: "3D, 3D MAX", size:  12,),
 
-                // trailer button
-                Row(
+                  // trailer button
+                  Row(
                     children: [
                       Icon(Icons.play_circle_outline_sharp ),
-                      Text("Regarder la bande annonce")
+                      Expanded(child: Text("Regarder la bande annonce"))
                     ],
-                ),
+                  ),
 
-              ],
-            ),
+                ],
+              ),
+             )
           )
         ],
       ),

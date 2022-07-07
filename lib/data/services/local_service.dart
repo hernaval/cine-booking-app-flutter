@@ -18,10 +18,10 @@ class LocalService {
       'id': '1dasafa23','title': 'Avengers', 'posterUrl': 'https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6791_AL_.jpg', 'rating': 5,  'category': "Action", 'isTrending': false, 'diffusions': []
     },
     {
-      'id': '123','title': 'Beast Man', 'posterUrl': 'posterUrl', 'rating': 5,  'category': "Action", 'isTrending': false, 'diffusions': []
+      'id': '123','title': 'Beast Man', 'posterUrl': 'https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6791_AL_.jpg', 'rating': 5,  'category': "Action", 'isTrending': false, 'diffusions': []
     },
     {
-      'id': '12345','title': 'Man of Steal', 'posterUrl': 'posterUrl', 'rating': 5,  'category': "Action", 'isTrending': false,
+      'id': '12345','title': 'Man of Steal', 'posterUrl': 'https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6791_AL_.jpg', 'rating': 5,  'category': "Action", 'isTrending': false,
       'diffusions': [
 
         ]
