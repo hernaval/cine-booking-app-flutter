@@ -11,9 +11,10 @@ class WCard extends StatelessWidget {
   final double height;
   final List<String> texts;
   final WCardType wCardType;
+  final bool selected;
 
 
-  WCard({this.width = 70, this.height = 60, required this.texts, this.wCardType = WCardType.multiline });
+  WCard({this.width = 70, this.height = 60, required this.texts, this.wCardType = WCardType.multiline, this.selected=false });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class WCard extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: AppColors.highPrimaryAccenColor
+        color: selected ? AppColors.accentColor : AppColors.primaryColor
       ),
       child: wCardType == WCardType.multiline
           ?

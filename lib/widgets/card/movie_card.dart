@@ -10,10 +10,10 @@ enum CardTypeMode {
 }
 class MovieCard extends StatelessWidget {
   final CardTypeMode mode;
-  final Movie? movie;
+  final Movie movie;
   final Function? onTapHandler;
 
-   MovieCard({ required this.mode, this.movie, this.onTapHandler });
+   MovieCard({ required this.mode, required this.movie, this.onTapHandler });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class MovieCard extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image: AssetImage("assets/images/avengers.jpg"),
+                      image: NetworkImage(movie.posterUrl),
                       fit:  BoxFit.cover
                   )
               ),
@@ -41,7 +41,7 @@ class MovieCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  WText(text: "Avengers", size: 14,),
+                  WText(text: movie.title, size: 14,),
                   Row(
                     children: [
                       Wrap(

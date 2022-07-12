@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:i_cine_app/data/repositories/movie_repository.dart';
+import 'package:i_cine_app/data/services/impl/movie_repository_impl.dart';
+import 'package:i_cine_app/data/services/local_service.dart';
 import 'package:i_cine_app/screens/movies/MovieDetail.dart';
 import 'package:i_cine_app/widgets/card/movie_card.dart';
 import 'package:i_cine_app/widgets/card/w_card.dart';
@@ -15,13 +18,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late List<Movie> trendMovies = [];
+  final IMovieRepository movieRepository = MovieRepositoryImpl(LocalService());
 
-  showMovieDetail(Movie? movie) {
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  void _loadData() async {
+      trendMovies = await movieRepository.getTrends();
+      setState(() {
+
+      });
+  }
+  showMovieDetail(Movie movie) {
     showModalBottomSheet(
         // backgroundColor: Colors.transparent,
         isScrollControlled: true,
         context: context,
-        builder: (context) => MovieDetail()
+        builder: (context) => MovieDetail(movie)
     );
   }
 
@@ -32,26 +49,29 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           WTextLarge(text: "En vogue"),
+           WTextLarge(text: "En vogue", size: 26,),
 
           // Trending movies with slider horizontal
           ListViewContainer(
+            hasData: trendMovies.isNotEmpty,
             height: 300,
             listView: ListView.builder(
-              itemCount: 3,
+              itemCount: trendMovies.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 return MovieCard(
                     mode: CardTypeMode.landscape,
                     onTapHandler: showMovieDetail,
+                  movie: trendMovies[index],
                 );
               },
             ),
           ),
 
-          WTextLarge(text: "Categories"),
+          WTextLarge(text: "Categories", size: 26,),
           // Categories list with slider horizontal
           ListViewContainer(
+              hasData: true,
               height: 50,
               listView: ListView.builder(
                 itemCount: 5,
@@ -60,26 +80,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Container(
                     padding: EdgeInsets.only(right: 20),
                       child: WCard(
-                        texts: ["0", "Horror"],
+                        texts: ["😉", "Horror"],
                       )
                   );
                 },
               )
           ),
           SizedBox(height: 30,),
-          WTextLarge(text: "Recommende pour vous"),
+          WTextLarge(text: "Recommende pour vous", size: 26,),
           // slider horizontal
 
           // Trending movies with slider horizontal
           ListViewContainer(
+            hasData: trendMovies.isNotEmpty,
             height: 300,
             listView: ListView.builder(
-              itemCount: 3,
+              itemCount: trendMovies.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 return MovieCard(
                     mode: CardTypeMode.portrait,
-                    onTapHandler: showMovieDetail
+                    onTapHandler: showMovieDetail,
+                  movie: trendMovies[index],
                 );
               },
             ),
