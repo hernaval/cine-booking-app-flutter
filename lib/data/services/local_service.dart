@@ -94,6 +94,14 @@ class LocalService {
     ];
   }
 
+  Future<Map<String, dynamic>> insert(dynamic data) async {
+    await Future.delayed(Duration(milliseconds: 800));
+
+    return {
+      'id': "1234", 'fullname': "Ranarivola Herinavalona", 'email': 'hernavalasco@gmail.com', 'accessToken': "eytokenization"
+    };
+  }
+
   Future<List<Map<String, dynamic>>> insertMany(dynamic data) async {
     await Future.delayed(Duration(milliseconds: 800));
 

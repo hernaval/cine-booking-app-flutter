@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_cine_app/constants/routes.dart';
+import 'package:i_cine_app/screens/auth/login_screen.dart';
 import 'package:i_cine_app/screens/booking/booking_screen.dart';
 import 'package:i_cine_app/screens/booking/booking_seat_screen.dart';
 import 'package:i_cine_app/screens/booking/booking_ticket_screen.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'i-cine',
       theme: ThemeData.dark(),
-      home: MainScreen(),
+      home: LoginScreen(),
       routes: {
         HomeRoute.home: (context) => HomeScreen(),
         BookingRoute.booking_payment : (context)  => BookingTicketScreen(),
