@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:i_cine_app/screens/booking/booking_list_screen.dart';
 import 'package:i_cine_app/screens/booking/booking_screen.dart';
 import 'package:i_cine_app/screens/booking/booking_seat_screen.dart';
-import 'package:i_cine_app/screens/booking/booking_ticket_screen.dart';
+import 'package:i_cine_app/screens/booking/booking_payment_screen.dart';
 import 'package:i_cine_app/screens/home/home_screen.dart';
 import 'package:i_cine_app/widgets/navigation/custom_app_bar.dart';
 import 'package:i_cine_app/widgets/navigation/custom_bottom_navigation_bar.dart';

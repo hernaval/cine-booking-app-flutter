@@ -32,6 +32,23 @@ class _BookingSeatScreenState extends State<BookingSeatScreen> {
 
   }
 
+  _createLocalBooking(String selectedDiffusionId, List<int> selectedSeatIds, dynamic movie) {
+    Map<String, dynamic> bookingArg =
+    {
+      'selectedDiffusionId': selectedDiffusionId,
+      'selectedSeatIds': selectedSeatIds,
+      'movie': movie,
+    }
+    ;
+
+
+
+
+
+    goTo(context, BookingRoute.booking_payment, BookingArgs(bookingArg)
+    );
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,15 +121,9 @@ class _BookingSeatScreenState extends State<BookingSeatScreen> {
                   text: "Confirmer",
                   color: AppColors.accentColor,
                   onPressedHandler: () {
-                    Map<String, dynamic> bookingArg =
-                    {
-                      'selectedDiffusionId': selectedDiffusionId,
-                      'selectedSeatIds': selectedSeatIds,
-                      'movie': movie,
-                    }
-                    ;
-                    goTo(context, BookingRoute.booking_payment, BookingArgs(bookingArg)
-                    );
+
+                    _createLocalBooking(selectedDiffusionId, selectedSeatIds, movie);
+
                   },
                 ),
               )

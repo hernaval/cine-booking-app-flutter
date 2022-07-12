@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:i_cine_app/constants/routes.dart';
 import 'package:i_cine_app/screens/movies/widgets/movie_header.dart';
 import 'package:i_cine_app/widgets/card/w_card.dart';
+import 'package:i_cine_app/widgets/common/social_bloc.dart';
 import 'package:i_cine_app/widgets/heading/w_text.dart';
 import 'package:i_cine_app/widgets/heading/w_text_large.dart';
 import 'package:i_cine_app/widgets/navigation/custom_app_bar.dart';
@@ -8,6 +12,7 @@ import 'package:i_cine_app/widgets/navigation/custom_app_bar.dart';
 import '../../constants/colors.dart';
 import '../../helpers/screen_args.dart';
 import '../../widgets/actions/w_button.dart';
+import '../../widgets/common/social_login.dart';
 class BookingTicketScreen extends StatefulWidget {
   const BookingTicketScreen({Key? key}) : super(key: key);
 
@@ -17,6 +22,18 @@ class BookingTicketScreen extends StatefulWidget {
 
 class _BookingTicketScreenState extends State<BookingTicketScreen> {
   bool isLoading = false;
+
+
+  _makePayment()  {
+    // verify login session
+
+    //validate payment or show login request
+    showModalBottomSheet(
+      backgroundColor: Colors.black54,
+        context: context,
+        builder: (context) => RequestLogin()
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +82,6 @@ class _BookingTicketScreenState extends State<BookingTicketScreen> {
                             ],
                           )
 
-                          // pay button
                         ],
                       ),
                     ),
@@ -140,11 +156,7 @@ class _BookingTicketScreenState extends State<BookingTicketScreen> {
                 text: "Payer maintenant",
                 color: AppColors.accentColor,
                 isLoading: isLoading,
-                onPressedHandler: () {
-                  setState(() {
-                    isLoading = !isLoading;
-                  });
-                },
+                onPressedHandler: () =>  _makePayment(),
               ),
             )
           ],
@@ -178,3 +190,44 @@ class _BookingTicketScreenState extends State<BookingTicketScreen> {
     );
   }
 }
+
+class RequestLogin extends StatelessWidget {
+  const RequestLogin({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      child: Container(
+        padding: EdgeInsets.all(40),
+        height: 450,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 10.0,
+            sigmaY: 10.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Icon(Icons.lock, size: 50),
+
+              Container(
+                child: Column(
+                  children: [
+                    WText(text: "Vous devez vous connecter pour pouvoir continuer votre achat"),
+                    SizedBox(height: 40,),
+                    WButton(text: "Se connecter maintenant", color: AppColors.accentColor, onPressedHandler: () {
+                      goTo(context, '/login', null);
+                    } )
+                  ],
+                ),
+              ),
+              //fake social login
+              SocialBlock()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+

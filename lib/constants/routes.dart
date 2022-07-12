@@ -11,4 +11,8 @@ class BookingRoute {
   static final String booking_payment = '/booking/payment';
 }
 
-goTo(final context, String path, ScreenArgs args) => Navigator.pushNamed(context, path, arguments: args);
+class AuthRoute {
+  static final String login = "/login";
+}
+
+goTo(final context, String path, ScreenArgs? args) => Navigator.pushNamed(context, path, arguments: args);

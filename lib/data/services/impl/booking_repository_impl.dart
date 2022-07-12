@@ -18,6 +18,7 @@ class BookingRepositoryImpl implements IBoookingRepository {
 
   @override
   Future<Booking> bookSeats(List<Booking> booking) {
+
     throw UnimplementedError();
   }
 
