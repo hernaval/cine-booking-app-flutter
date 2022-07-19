@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_cine_app/constants/colors.dart';
 import 'package:i_cine_app/data/repositories/booking_repository.dart';
 import 'package:i_cine_app/data/repositories/diffusion_repository.dart';
 import 'package:i_cine_app/data/services/impl/booking_repository_impl.dart';
@@ -8,6 +9,8 @@ import 'package:i_cine_app/data/services/local_service.dart';
 import 'package:i_cine_app/models/diffusion.dart';
 import 'package:i_cine_app/models/user.dart';
 import 'package:i_cine_app/screens/movies/widgets/movie_header.dart';
+import 'package:i_cine_app/widgets/heading/w_text.dart';
+import 'package:i_cine_app/widgets/heading/w_text_large.dart';
 
 import '../../data/repositories/movie_repository.dart';
 import '../../models/booking.dart';
@@ -57,7 +60,23 @@ class _BookingListScreenState extends State<BookingListScreen> {
                         itemCount: snapshot.data!.length,
                         scrollDirection: Axis.vertical,
                         itemBuilder: (context, index) {
-                          return MovieHeader(movie: snapshot.data![index]);
+                          return  Container(
+                            margin: EdgeInsets.only(bottom: 50),
+                            child: Column(
+                                  children: [
+                                    WText(text: "21 Juillet"),
+                                    WTextLarge(text: "18:00", color: AppColors.accentColor, size: 14,),
+                                    Container(
+                                        decoration: BoxDecoration(
+                                            color: Color(0xFF474642),
+                                            borderRadius: BorderRadius.circular(20)
+                                        ),
+                                       // margin: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                                        child: MovieHeader(movie: snapshot.data![index])
+                                    )
+                                  ],
+                                ),
+                          );
                         }
                     ) :
                     Container(),

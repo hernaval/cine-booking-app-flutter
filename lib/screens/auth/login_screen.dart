@@ -37,9 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final authPayload = Auth(_emailController.text, _passwordController.text);
 
-    final response = await authRepository.login(authPayload);
+    try {
+      final response = await authRepository.login(authPayload);
+      goTo(context, HomeRoute.home, null);
+    } catch (e) {
+        showDialog(context: context, builder: (context) => Container(child: Text("Une erreur est survenue"),));
+    }
 
-    print(response);
+    
 
     setState(() {
       isLoading = false;
@@ -71,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
          
           //or text
 
-          WButton(text: "Se connecter", color: AppColors.accentColor, onPressedHandler: () => _handleLogin, isLoading: isLoading,),
+          WButton(text: "Se connecter", color: AppColors.accentColor, onPressedHandler: () => _handleLogin(), isLoading: isLoading,),
 
           SocialBlock()
         ]

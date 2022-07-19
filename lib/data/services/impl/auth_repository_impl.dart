@@ -14,7 +14,8 @@ class AuthRepositoryImpl implements IAuthRepository {
   @override
   Future<User> login(Auth auth) async {
     // TODO: implement login
-    var payload = auth.toMap();
+    var payload = auth.toJson();
+    // print(payload);
 
     return await User.fromMap(await _localService.insert(payload));
   }

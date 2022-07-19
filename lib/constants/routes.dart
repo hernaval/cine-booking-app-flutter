@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:i_cine_app/helpers/screen_args.dart';
 
+final String apiUrl = "http://127.0.0.1:8000";
 class HomeRoute {
   static final String home = "/home";
 }

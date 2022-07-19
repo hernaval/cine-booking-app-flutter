@@ -1,12 +1,12 @@
 class Auth {
-  final String username;
+  final String email;
   final String password;
 
-  Auth(this.username, this.password);
+  Auth(this.email, this.password);
   
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
-      'username': username,
+      'email': email,
       'password': password,
     };
   }

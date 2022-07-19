@@ -3,7 +3,8 @@ import 'package:i_cine_app/models/diffusion.dart';
 enum BookingStatus {
   started, // create locally
   waiting, // push to remote server --> only available for 15mn
-  paid
+  paid,
+  verified
 }
 
 class Booking {

@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:i_cine_app/constants/routes.dart';
+
 class LocalService {
   List<Map<String, dynamic>> _items = [];
   static final LocalService _localService = LocalService._privateConstructor();
@@ -73,7 +78,6 @@ class LocalService {
         'id': 'eeefhrtdd', 'date': '04-08-2022','price': 10000, 'quality': '3DS 3DS MAX UHD', 'movieId': '123'
       },
 
-
     ];
   }
 
@@ -94,12 +98,19 @@ class LocalService {
     ];
   }
 
-  Future<Map<String, dynamic>> insert(dynamic data) async {
-    await Future.delayed(Duration(milliseconds: 800));
+  Future<dynamic> insert(dynamic data) async {
+    try {
+      http.Response response = await http.post(_parseUri("auth/login"), body: jsonEncode(data),   headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      });
+      return jsonDecode(response.body);
+    }catch (e) {
+      print("error $e");
+    }
 
-    return {
-      'id': "1234", 'fullname': "Ranarivola Herinavalona", 'email': 'hernavalasco@gmail.com', 'accessToken': "eytokenization"
-    };
+
+
   }
 
   Future<List<Map<String, dynamic>>> insertMany(dynamic data) async {
@@ -119,6 +130,9 @@ class LocalService {
     ];
   }
 
+  Uri _parseUri(String uri) {
+    return Uri.parse("$apiUrl/$uri");
+  }
 
 
 

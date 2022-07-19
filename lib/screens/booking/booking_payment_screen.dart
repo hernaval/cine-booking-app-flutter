@@ -27,12 +27,15 @@ class _BookingTicketScreenState extends State<BookingTicketScreen> {
   _makePayment()  {
     // verify login session
 
-    //validate payment or show login request
+    // or show login request
     showModalBottomSheet(
-      backgroundColor: Colors.black54,
+        backgroundColor: Colors.black54,
         context: context,
         builder: (context) => RequestLogin()
     );
+
+    //validate payment  and make booking
+
   }
 
   @override

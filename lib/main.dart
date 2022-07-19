@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'i-cine',
       theme: ThemeData.dark(),
-      home: MainScreen(),
+      home: LoginScreen(),
       routes: {
-        HomeRoute.home: (context) => HomeScreen(),
+
+        HomeRoute.home: (context) => MainScreen(),
         BookingRoute.booking_payment : (context)  => BookingTicketScreen(),
         BookingRoute.booking_time: (context) => BookingScreen(),
         BookingRoute.booking_seat: (context) => BookingSeatScreen(),

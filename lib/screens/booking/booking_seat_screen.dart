@@ -32,6 +32,7 @@ class _BookingSeatScreenState extends State<BookingSeatScreen> {
 
   }
 
+  // TODO save locally to remind user
   _createLocalBooking(String selectedDiffusionId, List<int> selectedSeatIds, dynamic movie) {
     Map<String, dynamic> bookingArg =
     {
@@ -40,10 +41,6 @@ class _BookingSeatScreenState extends State<BookingSeatScreen> {
       'movie': movie,
     }
     ;
-
-
-
-
 
     goTo(context, BookingRoute.booking_payment, BookingArgs(bookingArg)
     );
