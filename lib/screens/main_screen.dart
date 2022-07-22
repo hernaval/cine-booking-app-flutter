@@ -7,6 +7,8 @@ import 'package:i_cine_app/screens/home/home_screen.dart';
 import 'package:i_cine_app/widgets/navigation/custom_app_bar.dart';
 import 'package:i_cine_app/widgets/navigation/custom_bottom_navigation_bar.dart';
 
+import 'movies/movies_screen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -18,7 +20,8 @@ class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
   List _pages = [
     HomeScreen(),
-    BookingListScreen()
+    MoviesScreen(),
+    BookingListScreen(),
   ];
   @override
   Widget build(BuildContext context) {

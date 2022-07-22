@@ -22,9 +22,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
             onTapHandler(index);
         },
         items: [
-          BottomNavigationBarItem(label: "Browse", icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: "Ticket", icon: Icon(Icons.theaters_rounded)),
-          BottomNavigationBarItem(label: "Profil", icon: Icon(Icons.person)),
+          BottomNavigationBarItem(label: "Browse", icon: Icon(Icons.home_outlined)),
+          BottomNavigationBarItem(label: "Movies", icon: Icon(Icons.camera_roll_outlined)),
+          BottomNavigationBarItem(label: "Tickets", icon: Icon(Icons.bookmark_outline)),
         ]
     );
   }

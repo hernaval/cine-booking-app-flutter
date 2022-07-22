@@ -9,7 +9,9 @@ import '../../../models/movie.dart';
 
 class MovieHeader extends StatelessWidget {
   final Movie? movie;
-  const MovieHeader({this.movie});
+  final bool withShadow;
+
+  const MovieHeader({this.movie, this.withShadow=true});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class MovieHeader extends StatelessWidget {
             decoration: BoxDecoration(
               // borderRadius: BorderRadius.circular(20),
               boxShadow: [
-                BoxShadow(
+               if(withShadow) BoxShadow(
                   color: AppColors.mainTextColor,
                   blurRadius: 10.0,
                   spreadRadius: 2.0,

@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:i_cine_app/constants/routes.dart';
+
+import '../../constants/routes.dart';
+
 
 class LocalService {
   List<Map<String, dynamic>> _items = [];

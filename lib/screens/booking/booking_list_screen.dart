@@ -12,7 +12,9 @@ import 'package:i_cine_app/screens/movies/widgets/movie_header.dart';
 import 'package:i_cine_app/widgets/heading/w_text.dart';
 import 'package:i_cine_app/widgets/heading/w_text_large.dart';
 
+import '../../constants/routes.dart';
 import '../../data/repositories/movie_repository.dart';
+import '../../helpers/screen_args.dart';
 import '../../models/booking.dart';
 import '../../models/movie.dart';
 
@@ -41,6 +43,20 @@ class _BookingListScreenState extends State<BookingListScreen> {
       return Future.value(relatedMovies);
   }
 
+  //TODO add redirection logic based on booking status
+  void continueBooking(Booking booking, Movie movie) {
+    Map<String, dynamic> bookingArg =
+    {
+      'selectedDiffusionId': booking.diffusionId,
+      'selectedSeatIds':  [booking.reservedSeats] ,
+      'movie': movie,
+    }
+    ;
+
+    goTo(context, BookingRoute.booking_payment, BookingArgs(bookingArg)
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,13 +82,17 @@ class _BookingListScreenState extends State<BookingListScreen> {
                                   children: [
                                     WText(text: "21 Juillet"),
                                     WTextLarge(text: "18:00", color: AppColors.accentColor, size: 14,),
-                                    Container(
-                                        decoration: BoxDecoration(
-                                            color: Color(0xFF474642),
-                                            borderRadius: BorderRadius.circular(20)
-                                        ),
-                                       // margin: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
-                                        child: MovieHeader(movie: snapshot.data![index])
+                                    InkWell(
+                                      onTap: () =>  continueBooking(ticketSnapshot.data![index], snapshot.data![index]),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                                          decoration: BoxDecoration(
+                                              color: Color(0xFF474642),
+                                              borderRadius: BorderRadius.circular(20)
+                                          ),
+                                         // margin: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                                          child: MovieHeader(movie: snapshot.data![index], withShadow: false,)
+                                      ),
                                     )
                                   ],
                                 ),

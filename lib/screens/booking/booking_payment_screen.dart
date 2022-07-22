@@ -38,6 +38,14 @@ class _BookingTicketScreenState extends State<BookingTicketScreen> {
 
   }
 
+  void _checkIN(String bookingId) {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => CheckInScreee()
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as BookingArgs;
@@ -154,12 +162,20 @@ class _BookingTicketScreenState extends State<BookingTicketScreen> {
             ),
 
             //pay button
+            // Container(
+            //   child: WButton(
+            //     text: "Payer maintenant",
+            //     color: AppColors.accentColor,
+            //     isLoading: isLoading,
+            //     onPressedHandler: () =>  _makePayment(),
+            //   ),
+            // )
             Container(
               child: WButton(
-                text: "Payer maintenant",
+                text: "Check-IN",
                 color: AppColors.accentColor,
                 isLoading: isLoading,
-                onPressedHandler: () =>  _makePayment(),
+                onPressedHandler: () =>  _checkIN("1"),
               ),
             )
           ],
@@ -193,6 +209,87 @@ class _BookingTicketScreenState extends State<BookingTicketScreen> {
     );
   }
 }
+
+class CheckInScreee extends StatelessWidget {
+  const CheckInScreee({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(25),
+      height: 650,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30)
+          )
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // top label with close icon
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    WText(text: "Status du ticket", color: Colors.black, size: 20,),
+                    Container(
+                        child: GestureDetector(
+                            onTap: () => {
+                              Navigator.pop(context)
+                            },
+                            child: Row(
+                              children: [
+                                Icon(Icons.qr_code_scanner_outlined, size: 30,color: Colors.black,),
+                                SizedBox(width: 10,),
+                                Icon(Icons.download_outlined, size: 30,color: Colors.black,),
+                              ],
+                            )
+                        )
+                    )
+                  ],
+                ),
+                SizedBox(height: 40,),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    WTextLarge(text: "Reservation confirmee", color: Colors.green,),
+                    WText(text: "Nous vous remercions de votre confiance.\nUtiliser le scanner pour le Check-IN le jour jour de la diffusion."),
+                    Icon(Icons.check_circle, color: Colors.green, size: 70,),
+                  ],
+                ),
+                SizedBox(height: 65),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    WCard(
+                      texts: ["Mvola"],
+                    ),
+                    WCard(
+                        texts: ["Orange money"]
+                    ),
+                    WCard(
+                        texts: ["VISA"]
+                    )
+                  ],
+                )
+
+              ],
+            ),
+          ),
+
+        ],
+      ),
+    );
+  }
+}
+
 
 class RequestLogin extends StatelessWidget {
   const RequestLogin({Key? key}) : super(key: key);
@@ -233,4 +330,6 @@ class RequestLogin extends StatelessWidget {
     );
   }
 }
+
+
 
